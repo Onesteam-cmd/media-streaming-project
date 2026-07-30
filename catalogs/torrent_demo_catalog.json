@@ -1,0 +1,32 @@
+[
+  {
+    "id": "torrent-demo-placeholder",
+    "title": "Torrent Demo Placeholder",
+    "original_title": "Torrent Demo Placeholder",
+    "year": 2024,
+    "media_type": "movie",
+    "description": "Учебная запись без download_url. Нужна для проверки failed-сценария.",
+    "source": "torrent_demo",
+    "license_mode": "demo",
+    "file_name": null,
+    "relative_path": null,
+    "item_identifier": "torrent-demo-placeholder",
+    "download_url": null,
+    "file_size": null
+  },
+  {
+    "id": "torrent-demo-ia-trailer",
+    "title": "Internet Archive Trailer Torrent Demo",
+    "original_title": "Internet Archive Trailer Torrent Demo",
+    "year": 2024,
+    "media_type": "movie",
+    "description": "Учебная запись для проверки добавления torrent-файла в Transmission через backend.",
+    "source": "torrent_demo",
+    "license_mode": "demo",
+    "file_name": null,
+    "relative_path": null,
+    "item_identifier": "torrent-demo-ia-trailer",
+    "download_url": "https://archive.org/download/NightOfTheLivingDeadTrailer/NightOfTheLivingDeadTrailer_archive.torrent",
+    "file_size": null
+  }
+]

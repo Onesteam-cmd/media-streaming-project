@@ -1,0 +1,76 @@
+# Секреты и локальная конфигурация
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Node / Expo
+node_modules/
+.expo/
+mobile/.expo/
+mobile/dist/
+mobile/web-build/
+expo-env.d.ts
+*.tsbuildinfo
+
+# Локальные базы и runtime-данные
+*.db
+*.sqlite
+*.sqlite3
+backend/data/*
+!backend/data/.gitkeep
+
+jellyfin/config/*
+!jellyfin/config/.gitkeep
+jellyfin/cache/*
+!jellyfin/cache/.gitkeep
+
+media/*
+!media/movies/
+media/movies/*
+!media/movies/.gitkeep
+
+transmission/config/*
+!transmission/config/.gitkeep
+transmission/downloads/*
+!transmission/downloads/.gitkeep
+transmission/watch/*
+!transmission/watch/.gitkeep
+
+jackett/*
+!jackett/config/
+!jackett/downloads/
+jackett/config/*
+!jackett/config/.gitkeep
+jackett/downloads/*
+!jackett/downloads/.gitkeep
+
+# Логи, архивы и временные файлы
+*.log
+*.tmp
+*.cache
+*.zip
+*.tar
+*.tar.gz
+
+# IDE / ОС
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.vs/

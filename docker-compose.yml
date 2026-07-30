@@ -1,0 +1,89 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: media_backend
+    env_file:
+      - .env
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/data:/app/data
+      - ./catalogs:/app/catalogs
+      - ./media:/media
+      - ./transmission/downloads:/downloads/transmission
+    depends_on:
+      - jellyfin
+      - transmission
+    restart: unless-stopped
+
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: media_jellyfin
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./jellyfin/config:/config
+      - ./jellyfin/cache:/cache
+      - ./media:/media
+    restart: unless-stopped
+
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: media_transmission
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ}
+      - TRANSMISSION_RPC_AUTHENTICATION_REQUIRED=false
+      - TRANSMISSION_RPC_WHITELIST_ENABLED=false
+      - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
+      - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+      - TRANSMISSION_INCOMPLETE_DIR_ENABLED=true
+    volumes:
+      - ./transmission/config:/config
+      - ./transmission/downloads:/downloads
+      - ./transmission/watch:/watch
+    ports:
+      - "51413:51413"
+      - "51413:51413/udp"
+    restart: unless-stopped
+
+  jackett:
+    image: linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ}
+    volumes:
+      - ./jackett/config:/config
+      - ./jackett/downloads:/downloads
+    restart: unless-stopped
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TZ}
+    restart: unless-stopped
+
+  media_nginx:
+    image: nginx:alpine
+    container_name: media_nginx
+    volumes:
+      - ./media:/media:ro
+      - ./nginx/media.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+  web_nginx:
+    image: nginx:alpine
+    container_name: web_nginx
+    volumes:
+      - ./mobile/dist:/usr/share/nginx/html:ro
+      - ./nginx/web.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8091:80"
+    restart: unless-stopped
+

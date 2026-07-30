@@ -1,0 +1,14 @@
+[
+  {
+    "id": "local-demo-big-buck-bunny",
+    "title": "Big Buck Bunny",
+    "original_title": "Big Buck Bunny",
+    "year": 2008,
+    "media_type": "movie",
+    "description": "Демонстрационная запись для проверки local_demo-адаптера. Реальный видеофайл нужно положить в media/movies/",
+    "source": "local_demo",
+    "license_mode": "demo",
+    "file_name": "big_buck_bunny.mp4",
+    "relative_path": "movies/big_buck_bunny.mp4"
+  }
+]
